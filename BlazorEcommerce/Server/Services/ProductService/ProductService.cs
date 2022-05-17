@@ -13,7 +13,7 @@
         {
             var response = new ServicesResponse<Product>();
             var product = await _context.Products.FindAsync(id);
-            if(product == null)
+            if (product == null)
             {
                 response.Success = false;
                 response.Message = "Sorry, but this product doesn't exist.";
@@ -32,6 +32,17 @@
                 Data = await _context.Products.ToListAsync()
             };
 
+            return response;
+        }
+
+        public async Task<ServicesResponse<List<Product>>> GetProductByCategoryAsync(string categoryUrl)
+        {
+            var response = new ServicesResponse<List<Product>>
+            {
+                Data = await _context.Products
+                        .Where(p => p.Category.Url.ToLower().Equals(categoryUrl.ToLower()))
+                        .ToListAsync()
+            };
             return response;
         }
     }

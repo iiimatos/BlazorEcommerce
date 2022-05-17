@@ -28,5 +28,12 @@ namespace BlazorEcommerce.Server.Controllers
             var result = await _productService.GetProductByIdAsync(id);
             return Ok(result);
         }
+
+        [HttpGet("category/{categoryUrl}")]
+        public async Task<ActionResult<ServicesResponse<List<Product>>>> GetProductsByCategory(string categoryUrl)
+        {
+            var result = await _productService.GetProductByCategoryAsync(categoryUrl);
+            return Ok(result);
+        }
     }
 }
