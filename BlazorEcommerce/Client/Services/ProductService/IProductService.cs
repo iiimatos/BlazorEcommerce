@@ -4,7 +4,13 @@
     {
         event Action ProductsChanged;
         List<Product> Products { get; set; }
+        string Message { get; set; }
+        int CurrentPage { get; set; }
+        int PageCount { get; set; }
+        string LastSearchText { get; set; }
         Task GetProducts(string? categoryUrl = null);
-        Task<ServicesResponse<Product>> GetProductById(int id);
+        Task<ServiceResponse<Product>> GetProductById(int id);
+        Task SearchProducts(string searchText, int page);
+        Task<List<string>> GetProductSearchSuggestion(string searchText);
     }
 }
