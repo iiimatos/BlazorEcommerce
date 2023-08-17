@@ -2,7 +2,7 @@
 {
     public interface IOrderService
     {
-        Task PlacerOrder();
+        Task<string> PlacerOrder();
         Task<List<OrderOverviewResponse>> GetOrders();
         Task<OrderDetailsResponse> GetOrderDetails(int orderId);
     }
